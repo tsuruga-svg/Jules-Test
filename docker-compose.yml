@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5000" # ホストの5001番ポートをコンテナの5000番ポートにマッピング
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_ENV=development # 開発モードで実行（ホットリロード有効化）

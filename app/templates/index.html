@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パスワード生成ツール</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>パスワード生成ツール</h1>
+        <div class="card">
+            <form id="password-form">
+                <!-- ベースとなる単語 -->
+                <div class="form-group">
+                    <label for="base-word">ベースとなる単語:</label>
+                    <input type="text" id="base-word" name="base_word" required placeholder="例: Apple">
+                    <small>覚えやすい単語を入力してください。</small>
+                </div>
+
+                <!-- 使用する文字の種類 -->
+                <div class="form-group">
+                    <label>使用する文字の種類 (複数選択可):</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="uppercase" name="char_type" value="uppercase" checked>
+                        <label for="uppercase">英語 (大文字)</label>
+                        <input type="checkbox" id="lowercase" name="char_type" value="lowercase" checked>
+                        <label for="lowercase">英語 (小文字)</label>
+                        <input type="checkbox" id="numbers" name="char_type" value="numbers" checked>
+                        <label for="numbers">数字</label>
+                        <input type="checkbox" id="symbols" name="char_type" value="symbols" checked>
+                        <label for="symbols">記号</label>
+                    </div>
+                </div>
+
+                <!-- 文字数 -->
+                <div class="form-group">
+                    <label>文字数:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="len8" name="length_option" value="8" checked>
+                        <label for="len8">8</label>
+                        <input type="radio" id="len10" name="length_option" value="10">
+                        <label for="len10">10</label>
+                        <input type="radio" id="len12" name="length_option" value="12">
+                        <label for="len12">12</label>
+                        <input type="radio" id="len-other" name="length_option" value="other">
+                        <label for="len-other">その他:</label>
+                        <input type="number" id="custom-length" name="custom_length" min="4" max="128" value="16" disabled>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-generate">パスワードを生成</button>
+            </form>
+        </div>
+        <div id="result-area" class="card result-card" style="display: none;">
+            <h2>生成されたパスワード:</h2>
+            <div class="password-box">
+                <span id="password-result"></span>
+                <button id="copy-button" title="コピー">📋</button>
+            </div>
+            <p id="error-message" class="error-text"></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
